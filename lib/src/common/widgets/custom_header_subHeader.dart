@@ -6,10 +6,12 @@ import 'package:mobile_wallet/src/common/utils/text_style.dart';
 class CustomHeaderSubHeader extends StatelessWidget {
   final String? header;
   final String? subHeader;
+  final Color? headerColor;
   const CustomHeaderSubHeader({
     this.header = 'Header',
     this.subHeader = 'Sub Header',
     super.key,
+    this.headerColor,
   });
 
   @override
@@ -18,7 +20,12 @@ class CustomHeaderSubHeader extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Gap(24),
-        Text(header!, style: AppTextStyles.bodyMedium),
+        Text(
+          header!,
+          style: AppTextStyles.bodyMedium.copyWith(
+            color: headerColor ?? AppColors.textPrimary,
+          ),
+        ),
         Gap(5),
         Text(
           subHeader!,

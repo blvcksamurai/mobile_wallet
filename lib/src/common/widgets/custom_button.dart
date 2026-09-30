@@ -18,8 +18,8 @@ class CustomButton extends StatelessWidget {
           color: color ?? AppColors.fillSecondary,
           borderRadius: BorderRadius.circular(16),
         ),
-        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-        child: Text(text, style: AppTextStyles.bodyMedium),
+        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        child: Text(text, style: AppTextStyles.labelMedium),
       ),
     );
   }

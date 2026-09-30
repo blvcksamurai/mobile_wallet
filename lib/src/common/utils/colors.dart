@@ -30,6 +30,16 @@ class AppColors {
   static const Color fillMarigoldPrimary = Color(0xFFFAA800);
   static const Color fillMarigoldSecondary = Color(0xFFFFF5E3);
 
+  //Border Colors
+  static const Color borderPrimary = Color(0xFFF4F4F2);
+  static const Color borderSecondary = Color(0xFFE7E7E4);
+  static const Color borderInverse = Color(0xFF4D4845);
+  static const Color borderVerdant = Color(0xFF4E886F);
+  static const Color borderSandstone = Color(0xFFF0AB59);
+  static const Color borderEmber = Color(0xFFFD8240);
+  static const Color borderRuby = Color(0xFFF55D3E);
+  static const Color borderMarigold = Color(0xFFFAA800);
+
   //Surface Colors
   static const Color surfacePrimary = Color(0xFFEFEFED);
   static const Color surfaceSecondary = Color(0xFF4D4845);

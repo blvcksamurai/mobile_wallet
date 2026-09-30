@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:mobile_wallet/src/common/models/articles_model.dart';
 import 'package:mobile_wallet/src/common/models/expense_categories_model.dart';
 import 'package:mobile_wallet/src/common/models/money_flow.dart';
+import 'package:mobile_wallet/src/common/models/recent_transactions_model.dart';
+import 'package:mobile_wallet/src/common/models/upcoming_bills_model.dart';
 import 'package:mobile_wallet/src/common/utils/colors.dart';
 import 'package:mobile_wallet/src/common/utils/text_style.dart';
+import 'package:mobile_wallet/src/common/widgets/articles_item.dart';
 import 'package:mobile_wallet/src/common/widgets/custom_app_bar.dart';
 import 'package:mobile_wallet/src/common/widgets/custom_bar_chart.dart';
 import 'package:mobile_wallet/src/common/widgets/custom_button.dart';
 import 'package:mobile_wallet/src/common/widgets/custom_header_subHeader.dart';
 import 'package:mobile_wallet/src/common/widgets/expense_category_item.dart';
 import 'package:mobile_wallet/src/common/widgets/money_flow_chart.dart';
+import 'package:mobile_wallet/src/common/widgets/recent_transaction_item.dart';
 import 'package:mobile_wallet/src/common/widgets/striped_bar.dart';
+import 'package:mobile_wallet/src/common/widgets/upcoming_bills_item.dart';
+import 'package:mobile_wallet/src/features/budget/budget_home/articles_screen.dart';
 import 'package:mobile_wallet/src/features/budget/budget_home/expense_categories_screen.dart';
+import 'package:mobile_wallet/src/features/budget/budget_home/recent_transactions_screen.dart';
 import 'package:remixicon/remixicon.dart';
 
 class BudgetHome extends StatefulWidget {
@@ -25,6 +33,12 @@ class _BudgetHomeState extends State<BudgetHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        shape: const CircleBorder(),
+        backgroundColor: AppColors.verdantPrimary,
+        child: Icon(Icons.add, color: AppColors.borderPrimary),
+      ),
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
@@ -157,6 +171,7 @@ class _BudgetHomeState extends State<BudgetHome> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    //Expense Category Section
                     CustomHeaderSubHeader(
                       header: 'Expense Categories',
                       subHeader: "See where your money went",
@@ -187,7 +202,7 @@ class _BudgetHomeState extends State<BudgetHome> {
                       color: AppColors.surfacePrimary,
                     ),
                     Gap(24),
-
+                    //Cash Flow Section
                     CustomHeaderSubHeader(
                       header: 'Cash Flow',
                       subHeader: "See how your money moved",
@@ -197,6 +212,86 @@ class _BudgetHomeState extends State<BudgetHome> {
                     MoneyFlowChart(
                       flow: MoneyFlow(moneyIn: 453, moneyOut: 1285),
                       chartHeight: 160,
+                    ),
+                    Gap(24),
+                    //Upcoming Bills Section
+                    CustomHeaderSubHeader(
+                      header: 'Upcoming Bills',
+                      subHeader: '2 due',
+                    ),
+                    Gap(20),
+                    Text('\$29.97', style: AppTextStyles.titleLarge),
+                    //Upcoming Bills Item Builder
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: upcomingBills.length,
+                      itemBuilder: (context, index) {
+                        final upcomingBill = upcomingBills[index];
+                        return UpcomingBillsItem(upcomingBill: upcomingBill);
+                      },
+                    ),
+
+                    Gap(24),
+                    //Recent Transactions Section
+                    CustomHeaderSubHeader(
+                      header: 'Recent Transactions',
+                      subHeader: '23 total',
+                    ),
+                    //Recent Transactions List
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: recentTransactions.length,
+                      itemBuilder: (context, index) {
+                        final recentTransaction = recentTransactions[index];
+                        return RecentTransactionItem(
+                          recentTransaction: recentTransaction,
+                        );
+                      },
+                    ),
+                    Gap(24),
+                    CustomButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => RecentTransactionsScreen(),
+                          ),
+                        );
+                      },
+                      text: 'See all',
+                      color: AppColors.surfacePrimary,
+                    ),
+                    //Articles Section
+                    Gap(24),
+                    CustomHeaderSubHeader(
+                      header: 'Articles',
+                      subHeader: 'Learn the fundamentals of budgeting',
+                    ),
+                    Gap(24),
+                    //Articles Item Builder
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: articlesModel.length,
+                      itemBuilder: (context, index) {
+                        final articlesItem = articlesModel[index];
+                        return ArticlesItem(articlesModel: articlesItem);
+                      },
+                    ),
+                    Gap(20),
+                    CustomButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ArticlesScreen(),
+                          ),
+                        );
+                      },
+                      text: 'See more',
+                      color: AppColors.surfacePrimary,
                     ),
                   ],
                 ),

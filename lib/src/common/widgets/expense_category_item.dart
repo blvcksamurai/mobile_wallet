@@ -5,7 +5,6 @@ import 'package:mobile_wallet/src/common/utils/app_assets.dart';
 import 'package:mobile_wallet/src/common/utils/colors.dart';
 import 'package:mobile_wallet/src/common/utils/text_style.dart';
 import 'package:mobile_wallet/src/common/widgets/spending_progress_bar.dart';
-import 'package:mobile_wallet/src/common/widgets/striped_bar.dart';
 
 class ExpenseCategoriesItem extends StatelessWidget {
   final ExpenseCategory category;
