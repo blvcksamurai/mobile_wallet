@@ -15,6 +15,8 @@ class ExpenseCategory {
     required this.total,
     required this.color,
   });
+
+  double get progress => total <= 0 ? 0 : (spent / total).clamp(0.0, 1.0);
 }
 
 final expenseCategories = [

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:mobile_wallet/src/common/models/expense_categories_model.dart';
+import 'package:mobile_wallet/src/common/models/money_flow.dart';
 import 'package:mobile_wallet/src/common/utils/colors.dart';
 import 'package:mobile_wallet/src/common/utils/text_style.dart';
 import 'package:mobile_wallet/src/common/widgets/custom_app_bar.dart';
@@ -8,7 +9,9 @@ import 'package:mobile_wallet/src/common/widgets/custom_bar_chart.dart';
 import 'package:mobile_wallet/src/common/widgets/custom_button.dart';
 import 'package:mobile_wallet/src/common/widgets/custom_header_subHeader.dart';
 import 'package:mobile_wallet/src/common/widgets/expense_category_item.dart';
+import 'package:mobile_wallet/src/common/widgets/money_flow_chart.dart';
 import 'package:mobile_wallet/src/common/widgets/striped_bar.dart';
+import 'package:mobile_wallet/src/features/budget/budget_home/expense_categories_screen.dart';
 import 'package:remixicon/remixicon.dart';
 
 class BudgetHome extends StatefulWidget {
@@ -171,8 +174,30 @@ class _BudgetHomeState extends State<BudgetHome> {
                       },
                     ),
                     Gap(20),
-                    CustomButton(onPressed: () {}, text: 'See All'),
+                    CustomButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ExpenseCategoriesScreen(),
+                          ),
+                        );
+                      },
+                      text: 'See All',
+                      color: AppColors.surfacePrimary,
+                    ),
+                    Gap(24),
+
+                    CustomHeaderSubHeader(
+                      header: 'Cash Flow',
+                      subHeader: "See how your money moved",
+                    ),
                     Gap(20),
+                    //Cash Flow Graph
+                    MoneyFlowChart(
+                      flow: MoneyFlow(moneyIn: 453, moneyOut: 1285),
+                      chartHeight: 160,
+                    ),
                   ],
                 ),
               ),
@@ -185,6 +210,7 @@ class _BudgetHomeState extends State<BudgetHome> {
             //     return ListTile(title: Text('Item #$index'));
             //   }, childCount: 20),
             // ),
+            //Divider(height: 1, thickness: 1)
           ],
         ),
       ),

@@ -5,7 +5,8 @@ import 'package:mobile_wallet/src/common/utils/text_style.dart';
 class CustomButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final String text;
-  const CustomButton({super.key, this.onPressed, this.text = 'Button'});
+  Color? color;
+  CustomButton({super.key, this.onPressed, this.text = 'Button', this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class CustomButton extends StatelessWidget {
       child: Container(
         height: 32,
         decoration: BoxDecoration(
-          color: AppColors.fillSecondary,
+          color: color ?? AppColors.fillSecondary,
           borderRadius: BorderRadius.circular(16),
         ),
         padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
