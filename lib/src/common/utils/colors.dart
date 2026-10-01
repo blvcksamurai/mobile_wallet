@@ -4,6 +4,7 @@ class AppColors {
   static const Color textPrimary = Color(0xFF4D4845);
   static const Color textSecondary = Color(0xFF65605C);
   static const Color textTertiary = Color(0xFF928F8B);
+  static const Color textInverse = Color(0xFFFFFFFF);
   static const Color textDisabled = Color(0xFFDBDBD8);
   static const Color verdantPrimary = Color(0xFF215B44);
   static const Color verdantSecondary = Color(0xFF3D785F);

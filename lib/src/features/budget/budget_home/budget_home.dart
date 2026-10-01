@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:mobile_wallet/src/common/models/articles_model.dart';
 import 'package:mobile_wallet/src/common/models/expense_categories_model.dart';
 import 'package:mobile_wallet/src/common/models/money_flow.dart';
 import 'package:mobile_wallet/src/common/models/recent_transactions_model.dart';
 import 'package:mobile_wallet/src/common/models/upcoming_bills_model.dart';
+import 'package:mobile_wallet/src/common/utils/app_assets.dart';
 import 'package:mobile_wallet/src/common/utils/colors.dart';
 import 'package:mobile_wallet/src/common/utils/text_style.dart';
 import 'package:mobile_wallet/src/common/widgets/articles_item.dart';
@@ -34,7 +36,167 @@ class _BudgetHomeState extends State<BudgetHome> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            isScrollControlled: true,
+            backgroundColor: AppColors.fillPrimary,
+
+            builder: (context) {
+              return SizedBox(
+                height: MediaQuery.of(context).size.height * 0.5,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    children: [
+                      const Gap(14),
+                      AppBar(
+                        title: Text('New', style: AppTextStyles.bodyMedium),
+                        centerTitle: true,
+                        automaticallyImplyLeading: false,
+                        actions: [
+                          IconButton(
+                            onPressed: () => Navigator.pop(context),
+                            icon: const Icon(Icons.close, size: 20),
+                          ),
+                        ],
+                        backgroundColor: Colors.transparent,
+                        elevation: 0,
+                        toolbarHeight: 48,
+                        titleSpacing: 0,
+                      ),
+                      Gap(20),
+                      Expanded(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Stack(
+                            children: [
+                              Positioned.fill(
+                                child: SvgPicture.asset(
+                                  'assets/svg/verdant_theme.svg',
+                                  fit: BoxFit.cover,
+                                  alignment: Alignment.topRight,
+                                ),
+                              ),
+
+                              Positioned(
+                                bottom: 0,
+                                right: 0,
+                                child: SvgPicture.asset('assets/svg/chart.svg'),
+                              ),
+                              Positioned(
+                                left: 20,
+                                bottom: 20,
+                                child: CustomHeaderSubHeader(
+                                  header: 'Budget',
+                                  subHeader:
+                                      'Allocate a portion of your funds \nand track your expenses',
+                                  headerColor: AppColors.textInverse,
+                                  subheaderColor: AppColors.textInverse,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Gap(8),
+                      Expanded(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: SizedBox(
+                            height: 96,
+                            width: double.infinity,
+                            child: Stack(
+                              children: [
+                                Positioned.fill(
+                                  child: SvgPicture.asset(
+                                    'assets/svg/sandstone_theme.svg',
+                                    fit: BoxFit.cover,
+                                    alignment: Alignment.lerp(
+                                      Alignment.topCenter,
+
+                                      Alignment.centerLeft,
+                                      0.05,
+                                    )!,
+                                  ),
+                                ),
+                                Positioned(
+                                  bottom: 0,
+                                  right: 0,
+                                  child: SvgPicture.asset(
+                                    'assets/svg/bill.svg',
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 20,
+                                  bottom: 20,
+                                  child: CustomHeaderSubHeader(
+                                    header: 'Bills',
+                                    subHeader:
+                                        'Recurring expenses like rent,\nutility, etc.',
+                                    headerColor: AppColors.textInverse,
+                                    subheaderColor: AppColors.textInverse,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Gap(8),
+                      Expanded(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: SizedBox(
+                            height: 96,
+                            width: double.infinity,
+                            child: Stack(
+                              children: [
+                                //Decorative Svg Background
+                                Positioned.fill(
+                                  child: SvgPicture.asset(
+                                    'assets/svg/ruby_theme.svg',
+                                    fit: BoxFit.cover,
+                                    alignment: Alignment.lerp(
+                                      Alignment.topRight,
+
+                                      Alignment.centerRight,
+                                      0.25,
+                                    )!,
+                                  ),
+                                ),
+                                //Decorative Svg
+                                Positioned(
+                                  bottom: 0,
+                                  right: 0,
+                                  child: SvgPicture.asset(
+                                    'assets/svg/subs.svg',
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 20,
+                                  bottom: 20,
+                                  child: CustomHeaderSubHeader(
+                                    header: 'Subscription',
+                                    subHeader:
+                                        'Recurring expenses like \nstreaming, memberships, etc.',
+                                    headerColor: AppColors.textInverse,
+                                    subheaderColor: AppColors.textInverse,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Gap(34),
+                    ],
+                  ),
+                ),
+              );
+            },
+          );
+        },
         shape: const CircleBorder(),
         backgroundColor: AppColors.verdantPrimary,
         child: Icon(Icons.add, color: AppColors.borderPrimary),

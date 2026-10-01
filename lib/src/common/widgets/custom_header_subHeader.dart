@@ -7,11 +7,14 @@ class CustomHeaderSubHeader extends StatelessWidget {
   final String? header;
   final String? subHeader;
   final Color? headerColor;
+  final Color? subheaderColor;
+
   const CustomHeaderSubHeader({
     this.header = 'Header',
     this.subHeader = 'Sub Header',
     super.key,
     this.headerColor,
+    this.subheaderColor,
   });
 
   @override
@@ -30,7 +33,7 @@ class CustomHeaderSubHeader extends StatelessWidget {
         Text(
           subHeader!,
           style: AppTextStyles.bodySmall.copyWith(
-            color: AppColors.textTertiary,
+            color: subheaderColor ?? AppColors.textTertiary,
           ),
         ),
       ],
